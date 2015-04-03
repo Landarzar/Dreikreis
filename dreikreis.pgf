@@ -1,0 +1,107 @@
+ \usetikzlibrary{calc,intersections}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{through}
+
+\begin{tikzpicture}[very thick]
+
+\def\cd{6cm}
+\def\dreh{60}
+\def\dist{0.5cm}
+
+\coordinate (d1) at (.5*\cd,0);
+\coordinate (d2) at ( [shift=(120:\cd)] d1);
+\coordinate (d3) at ( [shift=(240:\cd)] d2);
+\coordinate (center) at ($1/3*(d1) + 1/3*(d2)+1/3*(d3)$);
+
+\newdimen\mydim
+ \newcommand\gety[1]{
+      \pgfextracty\mydim{\pgfpointanchor{#1}{center}}
+ }
+\gety{center}
+\def\len{(0.5*\cd+sqrt(0.5*\cd*0.5*\cd+\mydim*\mydim))}
+%\draw (center) circle ({0.5*\cd+sqrt(0.5*\cd*0.5*\cd+\mydim*\mydim)}) ;
+\node (bc) at (center) [circle,minimum size= ({(\len)*2}),draw]  {};
+\node (bco) at (center) [circle,minimum size= ({(\len)*2+2*\dist}),draw]  {};
+%\node (bci) at (center) [circle,minimum size=({(\len)*2}-2*\dist),draw]  {};
+
+
+\node(c1) at (d1) [circle through=($(d1)!0.5!(d2)$)] {};
+\node(c2) at (d2) [circle through=($(d2)!0.5!(d3)$)] {};
+\node(c3) at (d3) [circle through=($(d3)!0.5!(d1)$)] {};
+\coordinate(i12) at (intersection 1 of c1 and d1--d2);
+\coordinate(i23) at (intersection 1 of c2 and d2--d3);
+\coordinate(i31) at (intersection 1 of c3 and d3--d1);
+
+% Berechne hier die KantenlÃÂÃÂÃÂÃÂ¤nge
+\coordinate(o1) at ([shift=(-30:{ ((0.5*\cd+sqrt(0.5*\cd*0.5*\cd+\mydim*\mydim))) })]  center);
+\coordinate(o2) at ([shift=(120-30:{ ((0.5*\cd+sqrt(0.5*\cd*0.5*\cd+\mydim*\mydim))) })]  center);
+\coordinate(o3) at ([shift=(240-30:{ ((0.5*\cd+sqrt(0.5*\cd*0.5*\cd+\mydim*\mydim))) })]  center);
+
+
+\draw (o1) arc [start angle=-30, end angle=-240, radius=(.5*\cd)];
+\draw (o2) arc [start angle=90, end angle=-120, radius=(.5*\cd)];
+\draw (o3) arc [start angle=210, end angle=0, radius=(.5*\cd)];
+%\draw (c1) circle (0.5*\cd);
+%\draw (c2) circle (0.5*\cd);
+%\draw (c3) circle (0.5*\cd);
+
+\draw (i12) -- (center);
+\draw (i23) -- (center);
+\draw (i31) -- (center);
+
+\coordinate (bci1) at ($(o1)!\dist!(center)$);
+\coordinate (bci2) at ($(o2)!\dist!(center)$);
+\coordinate (bci3) at ($(o3)!\dist!(center)$);
+
+
+
+\draw (bci1) arc [start angle=-30, end angle=-240, radius=(0.5*\cd-\dist)] arc [start angle=-60, end angle=28, radius=(.5*(\cd+2*\dist))] coordinate (bcs1) edge [bend left=45] (bci1);
+\draw (bci2) arc [start angle=90, end angle=-120, radius=(.5*\cd-\dist)] coordinate (test) arc [start angle=60, end angle=148, radius=(.5*(\cd+2*\dist)] coordinate (bcs2) edge [bend left=45] (bci2);
+\draw (bci3) arc [start angle=210, end angle=0, radius=(.5*\cd-\dist)] arc [start angle=-180, end angle=-92, radius=(.5*(\cd+2*\dist))] coordinate (bcs3) edge [bend left=45]  (bci3);
+
+
+
+\draw (bcs1) edge [bend right=22.5] (o2);
+\draw (bcs2) edge [bend right=22.5] (o3);
+\draw (bcs3) edge [bend right=22.5] (o1);
+
+
+
+%\draw [->,very thick,color=red] (test)  arc [->,start angle=60, end angle=210, radius=(.5*(\cd+2*\dist)] node [left] {$210^\circ$};
+%\draw [->,very thick,color=blue] (test) arc [->,start angle=60, end angle=180, radius=(.5*(\cd+2*\dist)] node [left] {$180^\circ$};
+%\draw [->,very thick,color=green] (test) arc [->,start angle=60, end angle=150, radius=(.5*(\cd+2*\dist)] node [left] {$150^\circ$};
+
+%\node (bci) at (center) [red, very thick, circle,minimum size=({(\len)*2}-2*\dist),draw]  {};
+
+
+%\coordinate(bc) at (intersection 1 of mypath and myarc);
+
+
+%\node at (bci2) {bci2};
+%\node at (bcs2) {bcs2};
+%\node at (d1) {$d_1$};
+%\node at (d2) {$d_2$};
+%\node at (d3) {$d_3$};
+%\node at (i12) {$i_{1,2}$};
+%\node at (i23) {$i_{2,3}$};
+%\node at (i31) {$i_{3,1}$};
+%\node at (o1) {$o_1$};
+%\node at (o2) {$o_2$};
+%\node at (o3) {$o_3$};
+%\node at (center) {$s$};
+
+%\draw (center) -- (oo2);
+
+%\draw (oo2) arc [start angle=85, end angle=-60, radius=(.5*\cd)];
+
+%\draw (center) -- node [pos=0.5mm] {muh} (o1) ;
+
+%\node at (o1) {a};
+%\node at (o2) {b};
+%\node at (o3) {c};
+%\draw (0,0) -- (d1) -- (d2) -- (d3) -- cycle;
+
+
+%\arcThroughThreePoints{oc1}{ic1}{b2};
+
+\end{tikzpicture}

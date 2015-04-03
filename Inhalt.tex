@@ -1,0 +1,148 @@
+\documentclass[fontsize=10pt,a4paper,toc=bibliography,listof=totoc, DIV=classic,BCOR=10mm]{scrbook}
+
+\usepackage[T1]{fontenc} % T1-Fonts are better
+\usepackage[utf8]{inputenc} % UTF8, bitte was sonst
+%\usepackage{lmodern} % Eine etwas angenehmere Font
+\usepackage{yfonts}
+%\usepackage{ucs} % Extended UTF-8 input support for LaTeX
+%\usepackage{cite} % Improved Citation-Handling
+\usepackage{amsmath} % American Math Society Packete
+\usepackage{amsfonts} % American Math Society Packete
+\usepackage{amssymb} % American Math Society Packete
+\usepackage{graphicx} % Erweiterter Support für Graphiken
+\usepackage[ngerman]{babel} % Übersetze einige Literate auf Deutsch
+\usepackage{enumerate} % Erweiterte Enumerate-Umgebungen
+\usepackage{wrapfig} % Erlaubt es Text, Graphiken zu umfließen
+\usepackage{caption} % % American Math Society Packete
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{xparse}
+\usepackage{subcaption} % Support for sub-captions (and sub-figures)
+\usepackage{float} % Verbesserte floating-objects
+\usepackage{framed} % Umrahmte Abschnitte
+\usepackage[framed,hyperref,amsmath,thmmarks]{ntheorem}
+\usepackage{tikz} % Für LaTeX Graphiken
+\usetikzlibrary{decorations.markings,decorations.pathreplacing,shapes.geometric,automata,positioning,shadows} % Ein paar nützliche TikZ-Pakete
+\usepackage{ stmaryrd } % St Mary Road symbols for theoretical computer science
+\usepackage[hang]{footmisc}   % Für den Einzug bei Fußnoten
+\setlength{\footnotemargin}{0pt} % Setze den Einzug für die Fußnoten
+\usepackage{esint}
+\usepackage{chemfig}
+
+\usepackage{makeidx} % Index für Schlagwörter
+\makeindex
+
+
+%\usepackage[autostyle]{csquotes} % Erweitere Anführungszeichen
+
+\makeindex
+
+
+\usepackage[unicode,pdfmenubar,linktoc=all,hidelinks,bookmarks]{hyperref} % PDF-Verklinkungen ermöglichen
+\usepackage[backref=true,backend=bibtex, style=alphabetic]{biblatex}
+
+
+
+
+% Dictum schöner aussehen lassen
+\renewcommand*{\dictumwidth}{.45\textwidth}
+
+% Neue Absätze nicht einziehen, das zieht sonst grauenhaft aus.
+\KOMAoption{parskip}{half-}
+
+% Abkürzende Befehle:
+
+
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\probl}[1]{\textsc{#1}}
+
+
+
+% Listings
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+
+%\baselineskip14pt\normalfont
+%\renewcommand{\baselinestretch}{1}
+\bibliography{literatur}
+
+%Makros:
+
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0pt} %obere Trennlinie
+\fancyfoot[C]{} %Seitennummer
+\renewcommand{\footrulewidth}{0pt} %untere Trennlinie
+
+\fancyfoot[OR]{\Large\frakfamily\fraklines\thepage} % "O" steht für "odd", also ungerade Seiten
+\fancyfoot[EL]{\Large\frakfamily\fraklines\thepage} % "E" für "even", also gerade Seiten.
+\title{\Huge Das: Giftige Buch}
+\author{von Kai Sauerwald}
+
+\begin{document}
+\dedication{\textswab{\Large Danke an Walter Moers, der diese wundervolle Welt erschaffen hat.\newline Auch möchte ich Juliane danke, die mich viele Jahre begleitet hat und stets eine bereichung war.}}
+\pagenumbering{roman} %römische ziffern aktiviert
+
+\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	\input{dreikreis.pgf}
+\end{center}
+\vspace*{\fill}
+
+
+\clearpage\phantom{\ }
+\thispagestyle{empty}
+
+\frakfamily\fraklines
+\maketitle
+\setcounter{page}{1}
+\pagenumbering{arabic} %arbische ziffern aktiviert
+
+\newcounter{ctra}
+\setcounter{ctra}{1}
+\whiledo {\value{ctra} < 332}%
+{%
+	\stepcounter {ctra}%
+	\clearpage\ 
+}
+\clearpage
+\setcounter{ctra}{1}
+\whiledo {\value{ctra} < 107}%
+{%
+	\stepcounter {ctra}%
+	Sie wurden s:oeben vergiftet. 
+	Sie wurden s:oeben vergiftet.
+	Sie wurden s:oeben vergiftet. 
+	Sie wurden s:oeben vergiftet. \linebreak
+}
+
+
+\setcounter{ctra}{1}
+\whiledo {\value{ctra} < 55}%
+{%
+	\stepcounter {ctra}%
+	\clearpage\ 
+}
+\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage\clearpage\phantom{\ }
+\thispagestyle{empty}
+\clearpage
+
+\end{document}
